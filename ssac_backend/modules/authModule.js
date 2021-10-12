@@ -22,7 +22,7 @@ const authModule = {
         message: "유효하지 않은 토큰",
       });
     } else if (decoded === -3) {
-      return res.status(409).json({
+      return res.status(410).json({
         message: "토큰 에러",
       });
     }

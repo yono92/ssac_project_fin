@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 
-const formatDate = dayjs(writeTime).format("YYYY-MM-DD");
+// const formatDate = dayjs(writeTime).format("YYYY-MM-DD");
 
 const userSchema = new Schema({
   //회원가입 필수 정보: email ,nickName, password
@@ -16,7 +16,7 @@ const userSchema = new Schema({
     enum: ["모더나", "화이자", "AZ", "얀센", null],
     default: null,
   },
-  bDay: { type: formatDate, default: null },
+  bDay: { type: Date, default: null },
   gender: { type: Number, enum: [0, 1, 2, null], default: null }, //0 : 여자, 1 : 남자, 2 : 기타
   inoDate1: { type: Date, default: null },
   inoDate2: { type: Date, default: null },

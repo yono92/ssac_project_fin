@@ -11,8 +11,17 @@ const authController = {
       if (!checkEmail && !checkNickName) {
         const userModel = new user({ email, nickName, password });
         await userModel.save();
+
+        const payload = {
+          email: email,
+          verified: userModel.verified,
+        };
+
+        const token = jwtModule.create(payload);
+        console.log(token);
         return res.status(200).json({
           message: "신규 가입 성공",
+          accessToken: token,
         });
       } else if (checkEmail) {
         return res.status(409).json({
@@ -175,10 +184,9 @@ const authController = {
     userInfo.password = null;
 
     res.status(200).json({
-      message: "이미지 업로드 완료",
+      message: "프로필 조회 완료",
       data: userInfo,
     });
-    console.log(userInfo);
   },
 };
 
